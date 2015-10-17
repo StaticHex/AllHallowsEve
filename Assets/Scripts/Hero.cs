@@ -230,7 +230,8 @@ public class Hero : MonoBehaviour
 
 		if (canMove)
 		{
-			this.velocity = new Vector2 (this.HeroController.HorizontalMovementAxis * this.MaxNewSpeed, this.velocity.y);
+			this.velocity = new Vector2 (this.HeroController.HorizontalMovementAxis * this.MaxNewSpeed, this.HeroController.VerticalMovementAxis * this.MaxNewSpeed);
+
 		}
 		else
 		{
@@ -299,7 +300,7 @@ public class Hero : MonoBehaviour
 
 	public float StaticMargin = 0.2f;
 	public float FallingMargin = 0.5f;
-	public float Gravity = 6.0f;
+	private float Gravity = 0.0f;
 	public float MaxFall = 200.0f;
 	public float StompSpeed;
 	public float StompGravity = 6.0f;
