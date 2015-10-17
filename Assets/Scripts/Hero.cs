@@ -204,6 +204,9 @@ public class Hero : MonoBehaviour
 				Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
 			}
 
+			if (this.HeroController.toFire) {
+				this.GetComponent<BeamWeapon>().Fire (this.HeroController.Rotate*Mathf.Rad2Deg);
+			}
 
 			bool controllerIssuedStomp = (this.HeroController.Jump && !this.CanDoubleJump);
 			if (controllerIssuedStomp && !this.CanJumpOffGround() && this.canStomp)

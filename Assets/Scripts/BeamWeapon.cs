@@ -49,8 +49,7 @@ public class BeamWeapon : MonoBehaviour {
             CanFire = false;
             Overheated = true;
         }
-
-        Fire(); // temporary
+        //Fire(); // temporary
     }
 
     public void Fire()

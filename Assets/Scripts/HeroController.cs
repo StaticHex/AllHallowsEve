@@ -30,7 +30,15 @@ public class HeroController : MonoBehaviour
 		{
 			InputDevice inputDevice = this.InputDevice;
 			return (inputDevice != null) ? Mathf.Atan2(inputDevice.RightStickY, inputDevice.RightStickX): (this.PlayerNumber == 1 ? Mathf.Atan2(Input.GetAxis ("Vertical"), Input.GetAxis ("Horizontal")) : 0.0f);
-			//return (inputDevice != null) ? inputDevice.RightStickX : (this.PlayerNumber == 1 ? Input.GetAxis ("Horizontal") : 0.0f);
+		}
+	}
+
+	public bool toFire 
+	{
+		get 
+		{
+			InputDevice inputDevice = this.InputDevice;
+			return (inputDevice != null) ? inputDevice.Action1.WasPressed : (this.PlayerNumber == 1 ? Input.GetButtonDown ("Fire1") : false);
 		}
 	}
 
@@ -57,7 +65,8 @@ public class HeroController : MonoBehaviour
 		get
 		{
 			InputDevice inputDevice = this.InputDevice;
-			return (inputDevice != null) ? inputDevice.Action1.WasPressed : (this.PlayerNumber == 1 ? Input.GetButtonDown ("Fire1") : false);
+			return false;
+			//return (inputDevice != null) ? inputDevice.Action1.WasPressed : (this.PlayerNumber == 1 ? Input.GetButtonDown ("Fire1") : false);
 		}
 	}
 
@@ -66,7 +75,8 @@ public class HeroController : MonoBehaviour
 		get
 		{
 			InputDevice inputDevice = this.InputDevice;
-			return (inputDevice != null) ? inputDevice.Action3.WasPressed : (this.PlayerNumber == 1 ? Input.GetButtonDown ("Fire3") : false);
+			return false;
+			//return (inputDevice != null) ? inputDevice.Action3.WasPressed : (this.PlayerNumber == 1 ? Input.GetButtonDown ("Fire3") : false);
 		}
 	}
 
