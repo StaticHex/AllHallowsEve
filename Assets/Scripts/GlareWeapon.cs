@@ -14,6 +14,14 @@ public class GlareWeapon : MonoBehaviour {
     public LayerMask LayerMask;
 
     [SerializeField]
+    private GlareLine _baseGlareLine;
+
+    [HideInInspector]
+    public GlareLine MinGlareLine;
+    [HideInInspector]
+    public GlareLine MaxGlareLine;
+
+    [SerializeField]
     public bool DebugDrawLines;
 
     public void Reset()
@@ -23,22 +31,34 @@ public class GlareWeapon : MonoBehaviour {
         DebugDrawLines = false;
     }
 
+    public void Start()
+    {
+        InitializeGlareLines();
+    }
+
     public void Update()
     {
         var angleMin = transform.eulerAngles.z - AngleRange / 2.0f;
         var angleMax = angleMin + AngleRange;
 
         List<Hero> playersHit = new List<Hero>();
+
+        RaycastHit2D angleMinHit = default(RaycastHit2D), angleMaxHit = default(RaycastHit2D);
+
         for(var i = angleMin; i <= angleMax; i += 5.0f)
         {
             var hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(i*Mathf.Deg2Rad), Mathf.Sin(i*Mathf.Deg2Rad)),
                 Distance, LayerMask);
+
+            if (i == angleMin) angleMinHit = hit;
+            angleMaxHit = hit;
+
             if (!hit)
             {
                 if (DebugDrawLines)
                     Debug.DrawLine(transform.position,
                         (Vector2)transform.position +
-                        new Vector2(Mathf.Cos(i * Mathf.Deg2Rad), Mathf.Sin(i * Mathf.Deg2Rad)) * Distance, Color.gray); 
+                        new Vector2(Mathf.Cos(i * Mathf.Deg2Rad), Mathf.Sin(i * Mathf.Deg2Rad)) * Distance, Color.gray);
                 continue;
             }
 
@@ -47,6 +67,7 @@ public class GlareWeapon : MonoBehaviour {
             {
                 if(DebugDrawLines)
                     Debug.DrawLine(transform.position, hit.point, Color.white);
+
                 continue;
             }
             else
@@ -58,11 +79,39 @@ public class GlareWeapon : MonoBehaviour {
             if (!playersHit.Contains(player)) playersHit.Add(player);
         }
 
+        DrawGlareLine(MinGlareLine, angleMinHit, 
+            transform.position + new Vector3(Mathf.Cos(angleMin*Mathf.Deg2Rad), Mathf.Sin(angleMin*Mathf.Deg2Rad))*Distance);
+        DrawGlareLine(MaxGlareLine, angleMaxHit, 
+            transform.position + new Vector3(Mathf.Cos(angleMax*Mathf.Deg2Rad), Mathf.Sin(angleMax*Mathf.Deg2Rad))*Distance);
+
         foreach (var player in playersHit)
         {
             // STUN 'EM HERE
 			player.Freeze();
             Debug.Log(string.Format("hit {0}!", player.name));
         }
+    }
+
+    public void InitializeGlareLines()
+    {
+        MinGlareLine = Instantiate(_baseGlareLine).GetComponent<GlareLine>();
+        MaxGlareLine = Instantiate(_baseGlareLine).GetComponent<GlareLine>();
+    }
+
+    private void DrawGlareLine(GlareLine glareLine, RaycastHit2D hit, Vector2 end = default(Vector2))
+    {
+        if (!hit)
+        {
+            glareLine.Draw(transform.position, end, GlareLine.Mode.Idle);
+            return;
+        }
+
+        if (hit.transform.GetComponent<Hero>() != null)
+        {
+            glareLine.Draw(transform.position, hit.point, GlareLine.Mode.Seen);
+            return;
+        }
+
+        glareLine.Draw(transform.position, hit.point, GlareLine.Mode.Wall);
     }
 }
