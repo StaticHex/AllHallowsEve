@@ -30,9 +30,17 @@ public class GlareWeapon : MonoBehaviour {
             if (!hit) continue;
 
             var player = hit.transform.GetComponent<Hero>();
-            if (player == null) continue;
+            if (player == null)
+            {
+                Debug.DrawLine(transform.position, hit.point, Color.white); // This is debug
+                continue;
+            }
+            else
+            {
+                Debug.DrawLine(transform.position, hit.point, Color.green); // This is debug
+            }
 
-            Debug.DrawLine(transform.position, hit.point); // This is debug
+            
 
             if (!playersHit.Contains(player)) playersHit.Add(player);
         }
