@@ -8,11 +8,15 @@ public class GlareWeapon : MonoBehaviour {
     public float AngleRange;
 
     [SerializeField]
+    public float Distance;
+
+    [SerializeField]
     public LayerMask LayerMask;
 
     public void Reset()
     {
         AngleRange = 90.0f;
+        Distance = 10.0f;
     }
 
     public void Update()
@@ -26,7 +30,8 @@ public class GlareWeapon : MonoBehaviour {
             // This is debug
             Debug.DrawRay(transform.position, new Vector2(Mathf.Cos(i * Mathf.Deg2Rad), Mathf.Sin(i * Mathf.Deg2Rad)), Color.gray); 
 
-            var hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(i*Mathf.Deg2Rad), Mathf.Sin(i*Mathf.Deg2Rad)));
+            var hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(i*Mathf.Deg2Rad), Mathf.Sin(i*Mathf.Deg2Rad)),
+                Distance, LayerMask);
             if (!hit) continue;
 
             var player = hit.transform.GetComponent<Hero>();
