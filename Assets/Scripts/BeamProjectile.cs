@@ -9,6 +9,9 @@ public class BeamProjectile : MonoBehaviour
 
     [SerializeField]
     public float Direction;
+
+    [SerializeField]
+    public float Life;
     
     [SerializeField]
     public Transform TrailHolder;
@@ -29,6 +32,7 @@ public class BeamProjectile : MonoBehaviour
     {
         Speed = 20.0f;
         Direction = 0.0f;
+        Life = 5.0f;
         TrailJitterMagnitude = 0.5f;
         RicochetAmount = 5;
     }
@@ -44,6 +48,9 @@ public class BeamProjectile : MonoBehaviour
 
     public void Update()
     {
+        Life -= Time.deltaTime;
+        if (Life <= 0.0f) Destroy(gameObject);
+
         transform.eulerAngles = new Vector3(transform.eulerAngles.x,
             transform.eulerAngles.y,
             Mathf.Atan2(_rigidbody2D.velocity.y, _rigidbody2D.velocity.x)*Mathf.Rad2Deg);

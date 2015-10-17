@@ -41,11 +41,6 @@ public class BeamWeapon : MonoBehaviour {
         Overheated = false;
     }
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
-
     public void Update()
     {
         UpdateTimer();
