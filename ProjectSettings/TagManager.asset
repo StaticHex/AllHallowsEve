@@ -17,10 +17,10 @@ TagManager:
   - Ground
   - Projectile
   - IgnorePlatforms
-  - 
-  - 
-  - 
-  - 
+  - Heroes
+  - Ghost
+  - Lasers
+  - Walls
   - 
   - 
   - 

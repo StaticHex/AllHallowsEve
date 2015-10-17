@@ -53,6 +53,7 @@ public class GlareWeapon : MonoBehaviour {
         foreach (var player in playersHit)
         {
             // STUN 'EM HERE
+			player.Freeze();
             Debug.Log(string.Format("hit {0}!", player.name));
         }
     }

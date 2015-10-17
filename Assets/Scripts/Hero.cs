@@ -526,6 +526,10 @@ public class Hero : MonoBehaviour
 		return this.TimeLeftStunned > 0.0f;
 	}
 
+	public void Freeze() {
+		this.velocity = new Vector2(0,0);
+	}
+
 	void Stun(Hero attackingHero)
 	{
 		this.TimeLeftStunned = this.StunTime;
@@ -653,11 +657,11 @@ public class Hero : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		this.gameObject.layer = LayerMask.NameToLayer ("IgnorePlatforms");
+		//this.gameObject.layer = LayerMask.NameToLayer ("IgnorePlatforms");
 	}
 
 	void OnTriggerExit2D(Collider2D other)
 	{
-		this.gameObject.layer = LayerMask.NameToLayer ("Default");
+		//this.gameObject.layer = LayerMask.NameToLayer ("Default");
 	}
 }
