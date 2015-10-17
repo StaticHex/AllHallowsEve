@@ -28,6 +28,8 @@ public class BeamProjectile : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
 
+    private bool _isQuitting;
+
     public void Reset()
     {
         Speed = 20.0f;
@@ -66,8 +68,14 @@ public class BeamProjectile : MonoBehaviour
         TrailHolder.position = transform.position + new Vector3(Mathf.Cos(angle)*magnitude, Mathf.Sin(angle)*magnitude);
     }
 
+    public void OnApplicationQuit()
+    {
+        _isQuitting = true;
+    }
+
     public void OnDestroy()
     {
+        if (_isQuitting) return;
         for (var i = 0; i < RicochetAmount; i++)
         {
             var ricochet = Instantiate(RicochetEffect);
