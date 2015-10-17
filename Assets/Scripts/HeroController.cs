@@ -24,6 +24,16 @@ public class HeroController : MonoBehaviour
 		}
 	}
 
+	public float Rotate
+	{
+		get
+		{
+			InputDevice inputDevice = this.InputDevice;
+			return (inputDevice != null) ? Mathf.Atan2(inputDevice.RightStickY, inputDevice.RightStickX): (this.PlayerNumber == 1 ? Mathf.Atan2(Input.GetAxis ("Vertical"), Input.GetAxis ("Horizontal")) : 0.0f);
+			//return (inputDevice != null) ? inputDevice.RightStickX : (this.PlayerNumber == 1 ? Input.GetAxis ("Horizontal") : 0.0f);
+		}
+	}
+
 	public float HorizontalMovementAxis
 	{
 		get
