@@ -29,6 +29,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseHeroStatDisplay: {fileID: 11432748, guid: 419446cde7aa68c44a6272186b5cb3fe,
     type: 2}
+  _baseGhostStatDisplay: {fileID: 11460010, guid: e72bed386109faa4fa4d2209fd853781,
+    type: 2}
 --- !u!224 &22404418
 RectTransform:
   m_ObjectHideFlags: 1
