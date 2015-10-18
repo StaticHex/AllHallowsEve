@@ -676,6 +676,8 @@ public class Hero : MonoBehaviour
 		this.NumDeaths = 0;
 		freezeTime = 0;
 		isFrozen = false;
+		health = maxHealth;
+		dead = false;
     }
 
 	void Respawn()

@@ -7,6 +7,7 @@ public class TimerControl : MonoBehaviour {
     public UnityEngine.UI.Text txt;
     public float sec;
     private string secTxt;
+	Hero ghostPlayer;
 
 	void Start () {
         // Set time limit for match (in seconds)
@@ -18,11 +19,14 @@ public class TimerControl : MonoBehaviour {
         // Set time text starting out
         txt = this.gameObject.GetComponent<UnityEngine.UI.Text>();
         txt.text = ((int)(sec / 60)).ToString()+":"+secTxt;
+		foreach (var ghost in FindObjectsOfType<GhostInjury>()) {
+			ghostPlayer = ((GhostInjury)ghost).gameObject.GetComponent<Hero> ();
+		}
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(sec > 0) {
+		if(!ghostPlayer.isDead() && sec > 0) {
             // Format seconds
             secTxt = formatS(sec);
 
@@ -33,7 +37,13 @@ public class TimerControl : MonoBehaviour {
         else
         {
             // ** placeholder for now; will eventually determine victory/defeat
-            txt.text = "END";
+			if (ghostPlayer.isDead()) {
+				txt.text = "Humans have won";
+			} else {
+				txt.text = "Ghost has won";
+			}
+
+			Invoke("RestartGame", 7f);
         }
     }
 
@@ -48,4 +58,8 @@ public class TimerControl : MonoBehaviour {
         }
         return temp;
     }
+
+	void RestartGame () {
+		Application.LoadLevel("ram_scene");
+	}
 }

@@ -24,9 +24,9 @@ public class GhostStatDisplay : MonoBehaviour {
 	    if(!Player) Destroy(gameObject);
 
 	    var healthScale = Player.health/Player.maxHealth;
-        HealthBar.transform.localScale = new Vector3(HealthBar.transform.localScale.x,
+        HealthBar.transform.localScale = new Vector3(healthScale,
             HealthBar.transform.localScale.y,
-            healthScale);
+		    HealthBar.transform.localScale.z);
     }
 
     public void LateUpdate()
