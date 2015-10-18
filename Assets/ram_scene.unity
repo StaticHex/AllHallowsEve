@@ -1157,6 +1157,21 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 18432
+  _baseGlareLine: {fileID: 11419408, guid: e238d696da0774d4488fbfac4683b152, type: 2}
+  MinGlareLine: {fileID: 0}
+  MaxGlareLine: {fileID: 0}
+  DebugDrawLines: 0
+--- !u!114 &523351344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 523351337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bc133e3b14b4467ae2b0bf25984319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &540869744
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,6 +71,8 @@ public class Hero : MonoBehaviour
 	private float JumpForgivenessTimeLeft;
 	private GameObject MaxSizeSound;
 	private int NumDeaths;
+	private float freezeTime = 0;
+	private bool IsFrozen = false;
 
 	public Sprite[] BodySprites;
 	public Sprite[] ProjectileSprites;
@@ -185,6 +187,10 @@ public class Hero : MonoBehaviour
 			}
 		}
 
+		freezeTime--;
+		if (freezeTime <= 0) {
+			IsFrozen = false;
+		}
 
 		this.JumpForgivenessTimeLeft -= Time.deltaTime;
 
@@ -229,7 +235,7 @@ public class Hero : MonoBehaviour
 			this.SetDoubleJumpAllowed();
 		}
 
-		bool canMove = !this.IsChanneling && !this.Stomping && !this.IsStunned();
+		bool canMove = !this.IsChanneling && !this.Stomping && !this.IsStunned() && !IsFrozen;
 
 		if (canMove)
 		{
@@ -526,8 +532,14 @@ public class Hero : MonoBehaviour
 		return this.TimeLeftStunned > 0.0f;
 	}
 
-	public void Freeze() {
+	public void Freeze(float time) {
+		freezeTime = time;
 		this.velocity = new Vector2(0,0);
+		IsFrozen = true;
+	}
+
+	public void Freeze() {
+		Freeze (0);
 	}
 
 	void Stun(Hero attackingHero)
@@ -631,6 +643,8 @@ public class Hero : MonoBehaviour
 		this.transform.localPosition = Vector3.zero;
 		this.RespawnTimeCalculated = this.RespawnTime;
 		this.NumDeaths = 0;
+		freezeTime = 0;
+		IsFrozen = false;
     }
 
 	void Respawn()
