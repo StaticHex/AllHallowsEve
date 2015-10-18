@@ -29,5 +29,10 @@ public class BeamRicochet : MonoBehaviour
     public void OnDestroy()
     {
         if (_isQuitting) return;
+
+        var trail = GetComponent<TrailRenderer>();
+        if (trail == null) return;
+        trail.transform.SetParent(null);
+        trail.autodestruct = true;
     }
 }

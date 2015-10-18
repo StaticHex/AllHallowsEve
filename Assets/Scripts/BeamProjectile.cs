@@ -5,6 +5,9 @@
 public class BeamProjectile : MonoBehaviour
 {
     [SerializeField]
+    public int SourceID;
+
+    [SerializeField]
     public float Speed;
 
     [SerializeField]
@@ -43,9 +46,12 @@ public class BeamProjectile : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _rigidbody2D.velocity = new Vector2(Mathf.Cos(Direction*Mathf.Deg2Rad)*Speed, Mathf.Sin(Direction*Mathf.Deg2Rad)*Speed);
-
+        
         _collider2D = GetComponent<Collider2D>();
         _collider2D.isTrigger = true;
+        transform.localScale = new Vector3(transform.localScale.x, 
+            transform.localScale.y*(TrailJitterMagnitude/_collider2D.bounds.extents.y),
+            transform.localScale.z);
     }
 
     public void Update()
@@ -70,7 +76,23 @@ public class BeamProjectile : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider2D)
     {
-        Destroy(gameObject);
+        var beamProjectile = collider2D.GetComponent<BeamProjectile>();
+        if (beamProjectile != null)
+        {
+            if (SourceID == beamProjectile.SourceID)
+            {
+
+            }
+            else
+            {
+                Debug.Log("I CROSSED THE STREAMSSSSS");
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void OnApplicationQuit()
@@ -86,6 +108,10 @@ public class BeamProjectile : MonoBehaviour
             var ricochet = Instantiate(RicochetEffect);
             ricochet.transform.position = transform.position;
         }
+
+        var trail = TrailHolder.GetComponent<TrailRenderer>();
+        trail.transform.SetParent(null);
+        trail.autodestruct = true;
     }
 }
 
