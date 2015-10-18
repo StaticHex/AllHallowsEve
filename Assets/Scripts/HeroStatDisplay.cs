@@ -28,18 +28,17 @@ public class HeroStatDisplay : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+	    if (!Player) Destroy(gameObject);
+
 	    var heatScale = Weapon.Heat/Weapon.MaxHeat;
-	    heatScale -= Random.Range(0.0f, 0.025f*heatScale);
+	    heatScale -= Random.Range(0.0f, 0.04f*heatScale);
 
         var heatColor = Weapon.Overheated
             ? Color.red
             : Color.Lerp(Color.cyan, Color.red, heatScale);
 
-	    if (!Weapon.Overheated)
-	    {
-	        var jitterColor = Random.Range(0.0f, 0.04f)*(Weapon.Heat/Weapon.MaxHeat);
-	        heatColor = new Color(heatColor.r - jitterColor, heatColor.g - jitterColor, heatColor.b - jitterColor, heatColor.a);
-	    }
+	    var jitterColor = Random.Range(0.0f, 0.1f)*(Weapon.Heat/Weapon.MaxHeat);
+	    heatColor = new Color(heatColor.r - jitterColor, heatColor.g - jitterColor, heatColor.b - jitterColor, heatColor.a);
 
 	    WeaponBar.transform.localScale = Vector3.Lerp(WeaponBar.transform.localScale,
 	        new Vector3(
@@ -56,6 +55,6 @@ public class HeroStatDisplay : MonoBehaviour
         transform.eulerAngles = new Vector3(transform.eulerAngles.x,
             transform.eulerAngles.y,
             0.0f);
-        transform.localPosition = _positionLock;
+        transform.position = Player.transform.position;
     }
 }

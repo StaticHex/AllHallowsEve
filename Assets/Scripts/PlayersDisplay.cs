@@ -14,7 +14,7 @@ public class PlayersDisplay : MonoBehaviour
 	        {
                 var heroStatDisplay = Instantiate(_baseHeroStatDisplay);
                 heroStatDisplay.Player = hero;
-                heroStatDisplay.transform.SetParent(heroObject.transform);
+                heroStatDisplay.transform.SetParent(null);
 	            heroStatDisplay.transform.position = heroObject.transform.position;
 	        }
 	    }
