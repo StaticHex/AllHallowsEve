@@ -254,7 +254,8 @@ public class Hero : MonoBehaviour
 		if (canMove)
 		{
 			this.velocity = new Vector2 (this.HeroController.HorizontalMovementAxis * this.MaxNewSpeed, this.HeroController.VerticalMovementAxis * this.MaxNewSpeed);
-			this.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, this.HeroController.Rotate*Mathf.Rad2Deg - 90));
+            if(velocity != default(Vector2))
+			    this.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, this.HeroController.Rotate*Mathf.Rad2Deg - 90));
 		}
 		else
 		{
