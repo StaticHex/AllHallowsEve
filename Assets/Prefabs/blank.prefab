@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 481368}
   - 212: {fileID: 21214792}
   - 114: {fileID: 11430860}
-  - 68: {fileID: 6875642}
-  m_Layer: 0
+  - 61: {fileID: 6185010}
+  m_Layer: 14
   m_Name: blank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,8 +30,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!68 &6875642
-EdgeCollider2D:
+--- !u!61 &6185010
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -40,10 +40,9 @@ EdgeCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-  - {x: 0, y: .5}
-  - {x: 1, y: .5}
+  m_Offset: {x: .5, y: .5}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
 --- !u!114 &11430860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,6 +95,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_UsedByEffector
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
