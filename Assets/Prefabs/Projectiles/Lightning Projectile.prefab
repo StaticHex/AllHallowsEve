@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28629e1fc7e00004bbf0a3843c552351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SourceID: 0
+  Source: {fileID: 0}
+  blast: {fileID: 11404044, guid: 5aff454b01a1d4d27a1eef49bc4376e5, type: 2}
   Speed: 20
   Direction: 0
   Life: 3
@@ -207,6 +208,11 @@ Prefab:
       propertyPath: RicochetAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: blast
+      value: 
+      objectReference: {fileID: 11404044, guid: 5aff454b01a1d4d27a1eef49bc4376e5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 114360}

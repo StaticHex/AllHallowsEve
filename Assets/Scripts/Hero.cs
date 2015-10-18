@@ -77,7 +77,8 @@ public class Hero : MonoBehaviour
 	public float maxHealth = 100;
 	public float health;
 	private bool dead = false;
-
+	private bool isBeingShot = false;
+	public float recoveryWait = 0;
 	public Sprite[] BodySprites;
 	public Sprite[] ProjectileSprites;
 	public Sprite[] ProjectileExplosions;
@@ -87,9 +88,9 @@ public class Hero : MonoBehaviour
 	void Start ()
 	{
 		this.HeroController = this.GetComponent<HeroController>();
-		this.GetComponentInChildren<SpriteRenderer>().sprite = this.BodySprites[this.HeroController.PlayerNumber];
-		this.ProjectileSprite = this.ProjectileSprites[this.HeroController.PlayerNumber];
-		this.ProjectileExplosionSprite = this.ProjectileExplosions[this.HeroController.PlayerNumber];
+		//this.GetComponentInChildren<SpriteRenderer>().sprite = this.BodySprites[this.HeroController.PlayerNumber];
+		//this.ProjectileSprite = this.ProjectileSprites[this.HeroController.PlayerNumber];
+		//this.ProjectileExplosionSprite = this.ProjectileExplosions[this.HeroController.PlayerNumber];
 		this.StartScale = this.scale;
 		this.StartWidth = this.GetComponent<Collider2D>().bounds.size.x;
 		this.RespawnTimeCalculated = this.RespawnTime;
@@ -116,7 +117,7 @@ public class Hero : MonoBehaviour
 
 	void OnGUI()
 	{
-		this.DrawHUD(this.HUDPosition);
+		//this.DrawHUD(this.HUDPosition);
 	}
 
 	void SetDoubleJumpAllowed()
@@ -185,6 +186,15 @@ public class Hero : MonoBehaviour
 			Freeze(0);
 			dead = true;
 		}
+		if (isBeingShot) {
+			recoveryWait--;
+		}
+		if (recoveryWait <= 0) {
+			isBeingShot = false;
+		}
+		if (!isBeingShot && !dead && health < 100) {
+			health++;
+		}
 		if (this.RespawnTimeLeft > 0.0f)
 		{
 			this.transform.position = new Vector3(0.0f, -20.0f, 0.0f);
@@ -224,7 +234,7 @@ public class Hero : MonoBehaviour
 				Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), this.GetComponent<Collider2D>());
 			}
 
-			if (this.HeroController.toFire) {
+			if (this.HeroController.toFire && this.HeroController.gameObject.layer == LayerMask.NameToLayer ("Heroes")) {
 				this.GetComponent<BeamWeapon>().Fire (this.HeroController.Rotate*Mathf.Rad2Deg);
 			}
 
@@ -331,7 +341,7 @@ public class Hero : MonoBehaviour
 	public float MaxStompFall;
 	public float Jump = 200.0f;
 	public float Acceleration = 4.0f;
-	public float MaxNewSpeed = 150.0f;
+	public float MaxNewSpeed = 50.0f;
 	public float OriginalMaxSpeed;
 	public float GrowPopSpeed = 1.0f;
 	private bool canChannelGrow;
@@ -566,8 +576,14 @@ public class Hero : MonoBehaviour
 	}
 
 	public void Injure(float damage) {
-		health -= damage;
+		isBeingShot = true;
+		if (health > 0) {
+			health -= damage;
+		} else {
+			health = 0;
+		}
 		Debug.Log (health);
+		recoveryWait = 10;
 	}
 
 	public bool isDead () {

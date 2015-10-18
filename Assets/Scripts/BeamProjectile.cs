@@ -7,6 +7,8 @@ public class BeamProjectile : MonoBehaviour
     [SerializeField]
     public Hero Source;
 
+	public Explosion blast;
+
     [SerializeField]
     public float Speed;
 
@@ -86,7 +88,9 @@ public class BeamProjectile : MonoBehaviour
 
             Debug.Log("I CROSSED THE STREAMSSSSS");
             // Explode here
-            Destroy(gameObject);
+			Explosion explosion = Instantiate(blast);
+			explosion.transform.position = beamProjectile.transform.position;
+            Destroy(explosion.gameObject, 2);
         }
         else
         {

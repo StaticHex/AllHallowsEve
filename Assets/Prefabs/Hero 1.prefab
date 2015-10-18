@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: GroundDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 212: {fileID: 21200000}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,10 +43,11 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11482862}
-  - 114: {fileID: 11491866}
-  m_Layer: 11
-  m_Name: Hero
+  - 114: {fileID: 11482166}
+  - 114: {fileID: 11470092}
+  - 114: {fileID: 11482062}
+  m_Layer: 12
+  m_Name: Hero 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +61,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400006}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: ScreenEdgeDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +76,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400008}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: ChannelLocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +91,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 425412}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: ProjectileEmitLocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +106,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 406054}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: CounterLocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 0
---- !u!114 &11482862
+--- !u!114 &11470092
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -303,17 +304,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4d2b93d482ac06489a3278885f7b02a, type: 3}
+  m_Script: {fileID: 11500000, guid: 91bc133e3b14b4467ae2b0bf25984319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHeat: 3
-  Heat: 0
-  Overheated: 0
-  CooldownRate: 1
-  FireRate: 10
-  CanFire: 0
-  Projectile: {fileID: 11496958, guid: adc14491724ff3d488f6e167badeae34, type: 2}
---- !u!114 &11491866
+--- !u!114 &11482062
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -321,10 +315,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2178994888d9e4c2bb1e924c526cff21, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e5bf002ce6343309abdec092249fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectRenderer: {fileID: 0}
+--- !u!114 &11482166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eea362c1365ec884183d2ca919c60fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AngleRange: 90
+  Distance: 100
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 18432
+  _baseGlareLine: {fileID: 11419408, guid: e238d696da0774d4488fbfac4683b152, type: 2}
+  MinGlareLine: {fileID: 0}
+  MaxGlareLine: {fileID: 0}
+  DebugDrawLines: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -359,12 +372,16 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ScaleAdjustment

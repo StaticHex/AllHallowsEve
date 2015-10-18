@@ -8,8 +8,8 @@ public class HeroController : MonoBehaviour
 
 	void Start ()
 	{
-		string playerNumberString = this.name.Substring(this.name.Length-2, 1);
-		this.PlayerNumber = int.Parse(playerNumberString);
+		//string playerNumberString = this.name.Substring(this.name.Length-2, 1);
+		//this.PlayerNumber = int.Parse(playerNumberString);
 	}
 
 	public InputDevice InputDevice

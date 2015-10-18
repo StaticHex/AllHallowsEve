@@ -14,12 +14,12 @@ public class ShieldBuff : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		this.EffectRenderer.GetComponent<SpriteRenderer>().enabled = true;
+		//this.EffectRenderer.GetComponent<SpriteRenderer>().enabled = true;
 	}
 
 	void OnDisable ()
 	{
-		this.EffectRenderer.GetComponent<SpriteRenderer>().enabled = false;
+		//this.EffectRenderer.GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	public static void AddToHero (Hero hero)
