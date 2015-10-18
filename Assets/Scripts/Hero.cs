@@ -573,7 +573,6 @@ public class Hero : MonoBehaviour
 		slowTime = 100;
 		//this.velocity = new Vector2 (this.velocity.x * slowdown, this.velocity.y * slowdown);
 		MaxNewSpeed = MaxNewSpeed * slowdown;
-		Debug.Log (this.velocity);
 	}
 
 	public void Injure(float damage) {
@@ -583,7 +582,6 @@ public class Hero : MonoBehaviour
 		} else {
 			health = 0;
 		}
-		Debug.Log (health);
 		recoveryWait = 10;
 	}
 

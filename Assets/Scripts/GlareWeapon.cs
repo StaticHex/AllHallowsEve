@@ -97,7 +97,6 @@ public class GlareWeapon : MonoBehaviour {
             // STUN 'EM HERE
 			if (!this.gameObject.GetComponent<Hero>().isDead()) {
 				player.Freeze();
-				Debug.Log(string.Format("hit {0}!", player.name));
 			}
         }
     }

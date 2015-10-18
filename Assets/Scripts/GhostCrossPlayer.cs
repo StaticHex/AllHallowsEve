@@ -17,7 +17,6 @@ public class GhostCrossPlayer : MonoBehaviour {
 		if (other.gameObject.layer == LayerMask.NameToLayer ("Heroes")) {
 			Hero hero = other.gameObject.GetComponent<Hero>();
 			hero.Freeze(100);
-			Debug.Log ("Phase freeze!");
 		}
 	}
 }
