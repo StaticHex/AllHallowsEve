@@ -31,6 +31,8 @@ public class BeamProjectile : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
 
+    private float _lastTravelAngle;
+
     private bool _isQuitting;
 
     public void Reset()
@@ -59,9 +61,10 @@ public class BeamProjectile : MonoBehaviour
         Life -= Time.deltaTime;
         if (Life <= 0.0f) Destroy(gameObject);
 
+        _lastTravelAngle = Mathf.Atan2(_rigidbody2D.velocity.y, _rigidbody2D.velocity.x)*Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(transform.eulerAngles.x,
             transform.eulerAngles.y,
-            Mathf.Atan2(_rigidbody2D.velocity.y, _rigidbody2D.velocity.x)*Mathf.Rad2Deg);
+            _lastTravelAngle);
 
         TrailJitter();
     }
@@ -107,6 +110,13 @@ public class BeamProjectile : MonoBehaviour
         {
             var ricochet = Instantiate(RicochetEffect);
             ricochet.transform.position = transform.position;
+
+            var ricochetAngle = _lastTravelAngle;
+            ricochetAngle += Random.Range(-45.0f, 45.0f) + 180.0f;
+            ricochetAngle *= Mathf.Deg2Rad;
+
+            ricochet.GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(ricochetAngle), Mathf.Sin(ricochetAngle))
+                *Random.Range(10.0f, 20.0f);
         }
 
         var trail = TrailHolder.GetComponent<TrailRenderer>();

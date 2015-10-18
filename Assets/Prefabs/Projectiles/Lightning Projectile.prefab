@@ -145,13 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28629e1fc7e00004bbf0a3843c552351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SourceID: 0
   Speed: 20
   Direction: 0
   Life: 3
   TrailHolder: {fileID: 427126}
   TrailJitterMagnitude: .5
   RicochetEffect: {fileID: 11445052, guid: a5c4fea9a351027408794cdb16b903b5, type: 2}
-  RicochetAmount: 5
+  RicochetAmount: 1
 --- !u!212 &21203286
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -201,6 +202,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: RicochetAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
