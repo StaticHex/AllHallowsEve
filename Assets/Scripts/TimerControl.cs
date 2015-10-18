@@ -47,7 +47,7 @@ public class TimerControl : MonoBehaviour {
 			}
 
             _soundManager.StopLoop("raveyard");
-            _soundManager.PlaySound("Game Win");
+            //_soundManager.PlaySound("Game Win");
 
 			Invoke("RestartGame", 7f);
         }

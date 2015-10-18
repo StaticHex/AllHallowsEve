@@ -18,7 +18,7 @@ public class GhostInjury : MonoBehaviour {
 			BeamProjectile laser = other.gameObject.GetComponent<BeamProjectile>();
 			Hero ghost = this.gameObject.GetComponent<Hero>();
 			ghost.SlowDown(.9f);
-			ghost.Injure(10);
+			ghost.Injure(3);
 		}
 	}
 }
