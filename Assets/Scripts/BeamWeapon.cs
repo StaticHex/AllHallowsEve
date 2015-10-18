@@ -13,12 +13,18 @@ public class BeamWeapon : MonoBehaviour {
     public bool Overheated;
 
     [SerializeField]
+    public float AmbientCooldownRate;
+
+    private float _ambientCooldownTimer;
+
+    [SerializeField]
     public float CooldownRate;
 
     [SerializeField]
     public float FireRate;
 
     private float _fireTimer;
+    private bool _fired;
     
     [HideInInspector]
     public bool CanFire;
@@ -31,6 +37,7 @@ public class BeamWeapon : MonoBehaviour {
         MaxHeat = 5.0f;
         FireRate = 10.0f;
         CooldownRate = 2.0f;
+        AmbientCooldownRate = 1.0f;
     }
 
     public void Awake()
@@ -39,6 +46,8 @@ public class BeamWeapon : MonoBehaviour {
         _fireTimer = 0.0f;
         CanFire = false;
         Overheated = false;
+        _fired = false;
+        _ambientCooldownTimer = 0.0f;
     }
 
     public void Update()
@@ -67,6 +76,8 @@ public class BeamWeapon : MonoBehaviour {
 
         _fireTimer = 0.0f;
         Heat += 1.0f/FireRate;
+        _fired = true;
+        _ambientCooldownTimer = 0.5f/FireRate;
     }
 
     public void UpdateTimer()
@@ -85,6 +96,22 @@ public class BeamWeapon : MonoBehaviour {
         }
         else
         {
+            if (_fired)
+            {
+                _fired = false;
+            }
+            else if (_ambientCooldownTimer <= 0.0f)
+            {
+                Heat -= timestep*AmbientCooldownRate;
+                if (Heat < 0.0f)
+                    Heat = 0.0f;
+            }
+            else
+            {
+                _ambientCooldownTimer -= Time.deltaTime;
+                if (_ambientCooldownTimer < 0.0f) _ambientCooldownTimer = 0.0f;
+            }
+
             if (_fireTimer >= 1.0f / FireRate)
             {
                 CanFire = true;
