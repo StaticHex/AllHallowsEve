@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 [ExecuteInEditMode]
 public class MapControl : MonoBehaviour {
     public GameObject prefab; //used for blank tile object

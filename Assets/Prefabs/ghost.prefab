@@ -47,7 +47,7 @@ GameObject:
   - 114: {fileID: 11470092}
   - 114: {fileID: 11482062}
   m_Layer: 12
-  m_Name: Ghost
+  m_Name: ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
