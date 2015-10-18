@@ -74,7 +74,8 @@ public class Hero : MonoBehaviour
 	private float freezeTime = 0;
 	private bool isFrozen = false;
 	private float slowTime = 0;
-	private float health = 100;
+	public float maxHealth = 100;
+	public float health;
 	private bool dead = false;
 
 	public Sprite[] BodySprites;
@@ -93,6 +94,7 @@ public class Hero : MonoBehaviour
 		this.StartWidth = this.GetComponent<Collider2D>().bounds.size.x;
 		this.RespawnTimeCalculated = this.RespawnTime;
 		OriginalMaxSpeed = MaxNewSpeed;
+		health = maxHealth;
 		this.groundMask = LayerMask.NameToLayer ("Ground");
 	}
 
