@@ -14,7 +14,7 @@ public class TimerControl : MonoBehaviour {
 	{
 	    _soundManager = FindObjectOfType<SoundManager>();
         // Set time limit for match (in seconds)
-        sec = 300;
+        sec = 180;
 
         // Format seconds with leading 0 if < 10
         secTxt = formatS(sec);
