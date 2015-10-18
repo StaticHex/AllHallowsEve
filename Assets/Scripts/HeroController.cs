@@ -38,7 +38,7 @@ public class HeroController : MonoBehaviour
 		get 
 		{
 			InputDevice inputDevice = this.InputDevice;
-			return (inputDevice != null) ? inputDevice.Action1.WasPressed : (this.PlayerNumber == 1 ? Input.GetButtonDown ("Fire1") : false);
+			return (inputDevice != null) ? inputDevice.Action1.IsPressed : (this.PlayerNumber == 1 ? Input.GetButton ("Fire1") : false);
 		}
 	}
 
