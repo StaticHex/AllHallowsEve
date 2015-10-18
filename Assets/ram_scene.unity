@@ -183,11 +183,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .400000006
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -216,6 +216,10 @@ Prefab:
     - target: {fileID: 11400002, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: PlayerNumber
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
+      propertyPath: m_Name
+      value: Hero3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
@@ -784,7 +788,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1287912642}
   m_Layer: 0
-  m_Name: 3
+  m_Name: Human 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -860,7 +864,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1549066044}
   m_Layer: 0
-  m_Name: 2
+  m_Name: Human 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -888,11 +892,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .600000024
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .200000003
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -921,6 +925,10 @@ Prefab:
     - target: {fileID: 11400002, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: PlayerNumber
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
+      propertyPath: m_Name
+      value: Hero2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
@@ -1078,7 +1086,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1968717136}
   m_Layer: 0
-  m_Name: 1
+  m_Name: Human 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1106,11 +1114,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .400000006
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1139,6 +1147,10 @@ Prefab:
     - target: {fileID: 11400002, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
       propertyPath: PlayerNumber
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}
+      propertyPath: m_Name
+      value: Hero1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d957a5550a17341fabd452c0cbb85b4b, type: 2}

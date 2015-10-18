@@ -309,6 +309,7 @@ MonoBehaviour:
   MaxHeat: 3
   Heat: 0
   Overheated: 0
+  AmbientCooldownRate: .5
   CooldownRate: 1
   FireRate: 10
   CanFire: 0
@@ -421,6 +422,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: GrowPopSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: AmbientCooldownRate
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
