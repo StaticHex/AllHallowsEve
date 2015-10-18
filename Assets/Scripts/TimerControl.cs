@@ -8,8 +8,11 @@ public class TimerControl : MonoBehaviour {
     public float sec;
     private string secTxt;
 	Hero ghostPlayer;
+    private SoundManager _soundManager;
 
-	void Start () {
+	void Start ()
+	{
+	    _soundManager = FindObjectOfType<SoundManager>();
         // Set time limit for match (in seconds)
         sec = 300;
 
@@ -42,6 +45,9 @@ public class TimerControl : MonoBehaviour {
 			} else {
 				txt.text = "Ghost has won";
 			}
+
+            _soundManager.StopLoop("raveyard");
+            _soundManager.PlaySound("Game Win");
 
 			Invoke("RestartGame", 7f);
         }

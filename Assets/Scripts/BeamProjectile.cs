@@ -88,6 +88,7 @@ public class BeamProjectile : MonoBehaviour
 
             Debug.Log("I CROSSED THE STREAMSSSSS");
             // Explode here
+            Destroy(FindObjectOfType<SoundManager>().LoopSound("Beam Cross"), 0.25f);
 			Explosion explosion = Instantiate(blast);
 			explosion.transform.position = beamProjectile.transform.position;
             Destroy(explosion.gameObject, 2);

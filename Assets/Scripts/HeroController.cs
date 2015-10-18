@@ -33,6 +33,18 @@ public class HeroController : MonoBehaviour
 		}
 	}
 
+    public bool Moving
+    {
+        get
+        {
+            InputDevice inputDevice = this.InputDevice;
+            return (inputDevice != null)
+                ? new Vector2(inputDevice.RightStickY, inputDevice.RightStickX).magnitude > 0.05f
+                : (this.PlayerNumber == 1 &&
+                   new Vector2(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal")).magnitude > 0.05f);
+        }
+    }
+
 	public bool toFire 
 	{
 		get 

@@ -235,7 +235,7 @@ public class Hero : MonoBehaviour
 			}
 
 			if (this.HeroController.toFire && this.HeroController.gameObject.layer == LayerMask.NameToLayer ("Heroes")) {
-				this.GetComponent<BeamWeapon>().Fire (this.HeroController.Rotate*Mathf.Rad2Deg);
+				this.GetComponent<BeamWeapon>().Fire (transform.eulerAngles.z + 90.0f);
 			}
 
 			bool controllerIssuedStomp = (this.HeroController.Jump && !this.CanDoubleJump);
@@ -265,7 +265,8 @@ public class Hero : MonoBehaviour
 		{
 			this.velocity = new Vector2 (this.HeroController.HorizontalMovementAxis * this.MaxNewSpeed, this.HeroController.VerticalMovementAxis * this.MaxNewSpeed);
             //if(velocity != default(Vector2))
-			this.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, this.HeroController.Rotate*Mathf.Rad2Deg - 90));
+            if(HeroController.Moving)
+			    this.gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0.0f, 0.0f, this.HeroController.Rotate*Mathf.Rad2Deg - 90));
 		}
 		else
 		{

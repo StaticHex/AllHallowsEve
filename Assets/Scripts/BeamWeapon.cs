@@ -32,6 +32,8 @@ public class BeamWeapon : MonoBehaviour {
     [SerializeField]
     public BeamProjectile Projectile;
 
+    private SoundManager _soundManager;
+
     public void Reset()
     {
         MaxHeat = 5.0f;
@@ -48,6 +50,7 @@ public class BeamWeapon : MonoBehaviour {
         Overheated = false;
         _fired = false;
         _ambientCooldownTimer = 0.0f;
+        _soundManager = FindObjectOfType<SoundManager>();
     }
 
     public void Update()
@@ -78,6 +81,7 @@ public class BeamWeapon : MonoBehaviour {
         Heat += 1.0f/FireRate;
         _fired = true;
         _ambientCooldownTimer = 0.5f/FireRate;
+        Destroy(_soundManager.LoopSound("Laser Beam"), 0.1f);
     }
 
     public void UpdateTimer()

@@ -41,6 +41,10 @@ public class GlareWeapon : MonoBehaviour {
         var angleMin = transform.eulerAngles.z - AngleRange / 2.0f;
         var angleMax = angleMin + AngleRange;
 
+        // HACK
+        angleMin += 90.0f;
+        angleMax += 90.0f;
+
         List<Hero> playersHit = new List<Hero>();
 
         RaycastHit2D angleMinHit = default(RaycastHit2D), angleMaxHit = default(RaycastHit2D);
