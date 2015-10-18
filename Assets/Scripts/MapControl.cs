@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+[ExecuteInEditMode]
 public class MapControl : MonoBehaviour {
-    public GameObject prefab;
-    public GameObject go;
-    public GameObject player;
-    public GameObject ghost;
+    public GameObject prefab; //used for blank tile object
+    public GameObject go; // used in tandem with prefab to create collision tiles
+
     private int mapSize = 15;
     private double hRatio = .9;
     // Use this for initialization
@@ -16,10 +15,6 @@ public class MapControl : MonoBehaviour {
         createFrame();
         createStorage();
         createFurniture();
-        createPlayer(-mapSize - (int)(mapSize * hRatio) + 5, -mapSize + 3);
-        createPlayer(mapSize + (int)(mapSize * hRatio) - 5, -mapSize + 3);
-        createPlayer(-mapSize - (int)(mapSize * hRatio) + 5, mapSize - 3);
-        createGhost(-1, 5);
     }
 
     // Update is called once per frame
@@ -148,13 +143,5 @@ public class MapControl : MonoBehaviour {
         createBlock(3, 2, 1, 1); // create chair
         createBlock(-2, 10, 4, 1); // create couch
         createBlock(-2, -10, 4, 1); // create couch
-    }
-
-    void createPlayer(int x, int y) {
-        player = (GameObject)GameObject.Instantiate(player, new Vector3(x, y, 1), Quaternion.identity);
-    }
-
-    void createGhost(int x, int y) {
-        ghost = (GameObject)GameObject.Instantiate(ghost, new Vector3(x, y, 1), Quaternion.identity);
     }
 }
