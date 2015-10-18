@@ -50,6 +50,10 @@ public class GlareWeapon : MonoBehaviour {
             var hit = Physics2D.Raycast(transform.position, new Vector2(Mathf.Cos(i*Mathf.Deg2Rad), Mathf.Sin(i*Mathf.Deg2Rad)),
                 Distance, LayerMask);
 
+            var end = (Vector2) transform.position +
+                      new Vector2(Mathf.Cos(i*Mathf.Deg2Rad), Mathf.Sin(i*Mathf.Deg2Rad))*Distance;
+            DrawGlareLine(hit, end);
+
             if (i == angleMin) angleMinHit = hit;
             angleMaxHit = hit;
 
@@ -79,9 +83,9 @@ public class GlareWeapon : MonoBehaviour {
             if (!playersHit.Contains(player)) playersHit.Add(player);
         }
 
-        DrawGlareLine(MinGlareLine, angleMinHit, 
+        DrawGlareLine(angleMinHit, 
             transform.position + new Vector3(Mathf.Cos(angleMin*Mathf.Deg2Rad), Mathf.Sin(angleMin*Mathf.Deg2Rad))*Distance);
-        DrawGlareLine(MaxGlareLine, angleMaxHit, 
+        DrawGlareLine(angleMaxHit, 
             transform.position + new Vector3(Mathf.Cos(angleMax*Mathf.Deg2Rad), Mathf.Sin(angleMax*Mathf.Deg2Rad))*Distance);
 
         foreach (var player in playersHit)
@@ -100,8 +104,10 @@ public class GlareWeapon : MonoBehaviour {
         MaxGlareLine = Instantiate(_baseGlareLine).GetComponent<GlareLine>();
     }
 
-    private void DrawGlareLine(GlareLine glareLine, RaycastHit2D hit, Vector2 end = default(Vector2))
+    private void DrawGlareLine(RaycastHit2D hit, Vector2 end = default(Vector2))
     {
+        var glareLine = Instantiate(_baseGlareLine);
+
         if (!hit)
         {
             glareLine.Draw(transform.position, end, GlareLine.Mode.Idle);

@@ -31,13 +31,13 @@ public class HeroStatDisplay : MonoBehaviour
 	    if (!Player) Destroy(gameObject);
 
 	    var heatScale = Weapon.Heat/Weapon.MaxHeat;
-	    heatScale -= Random.Range(0.0f, 0.04f*heatScale);
+	    heatScale -= Random.Range(0.0f, 0.075f*heatScale);
 
         var heatColor = Weapon.Overheated
             ? Color.red
             : Color.Lerp(Color.cyan, Color.red, heatScale);
 
-	    var jitterColor = Random.Range(0.0f, 0.1f)*(Weapon.Heat/Weapon.MaxHeat);
+	    var jitterColor = Random.Range(0.0f, 0.15f)*(Weapon.Heat/Weapon.MaxHeat);
 	    heatColor = new Color(heatColor.r - jitterColor, heatColor.g - jitterColor, heatColor.b - jitterColor, heatColor.a);
 
 	    WeaponBar.transform.localScale = Vector3.Lerp(WeaponBar.transform.localScale,
