@@ -1172,6 +1172,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bc133e3b14b4467ae2b0bf25984319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &523351345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 523351337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e5bf002ce6343309abdec092249fb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &540869744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3852,10 +3863,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d2b93d482ac06489a3278885f7b02a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHeat: 5
+  MaxHeat: 3
   Heat: 0
   Overheated: 0
-  CooldownRate: 2
+  CooldownRate: 1
   FireRate: 10
   CanFire: 0
   Projectile: {fileID: 11496958, guid: adc14491724ff3d488f6e167badeae34, type: 2}

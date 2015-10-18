@@ -72,7 +72,10 @@ public class Hero : MonoBehaviour
 	private GameObject MaxSizeSound;
 	private int NumDeaths;
 	private float freezeTime = 0;
-	private bool IsFrozen = false;
+	private bool isFrozen = false;
+	private float slowTime = 0;
+	private float health = 100;
+	private bool dead = false;
 
 	public Sprite[] BodySprites;
 	public Sprite[] ProjectileSprites;
@@ -89,7 +92,7 @@ public class Hero : MonoBehaviour
 		this.StartScale = this.scale;
 		this.StartWidth = this.GetComponent<Collider2D>().bounds.size.x;
 		this.RespawnTimeCalculated = this.RespawnTime;
-
+		OriginalMaxSpeed = MaxNewSpeed;
 		this.groundMask = LayerMask.NameToLayer ("Ground");
 	}
 
@@ -176,6 +179,10 @@ public class Hero : MonoBehaviour
 
 	void Update ()
 	{
+		if (health <= 0) {
+			Freeze(0);
+			dead = true;
+		}
 		if (this.RespawnTimeLeft > 0.0f)
 		{
 			this.transform.position = new Vector3(0.0f, -20.0f, 0.0f);
@@ -189,7 +196,12 @@ public class Hero : MonoBehaviour
 
 		freezeTime--;
 		if (freezeTime <= 0) {
-			IsFrozen = false;
+			isFrozen = false;
+		} 
+
+		slowTime--;
+		if (slowTime <= 0) {
+			MaxNewSpeed = OriginalMaxSpeed;
 		}
 
 		this.JumpForgivenessTimeLeft -= Time.deltaTime;
@@ -235,7 +247,7 @@ public class Hero : MonoBehaviour
 			this.SetDoubleJumpAllowed();
 		}
 
-		bool canMove = !this.IsChanneling && !this.Stomping && !this.IsStunned() && !IsFrozen;
+		bool canMove = !this.IsChanneling && !this.Stomping && !this.IsStunned() && !isFrozen && !dead;
 
 		if (canMove)
 		{
@@ -317,6 +329,7 @@ public class Hero : MonoBehaviour
 	public float Jump = 200.0f;
 	public float Acceleration = 4.0f;
 	public float MaxNewSpeed = 150.0f;
+	public float OriginalMaxSpeed;
 	public float GrowPopSpeed = 1.0f;
 	private bool canChannelGrow;
 
@@ -535,11 +548,27 @@ public class Hero : MonoBehaviour
 	public void Freeze(float time) {
 		freezeTime = time;
 		this.velocity = new Vector2(0,0);
-		IsFrozen = true;
+		isFrozen = true;
 	}
 
 	public void Freeze() {
 		Freeze (0);
+	}
+
+	public void SlowDown(float slowdown) {
+		slowTime = 100;
+		//this.velocity = new Vector2 (this.velocity.x * slowdown, this.velocity.y * slowdown);
+		MaxNewSpeed = MaxNewSpeed * slowdown;
+		Debug.Log (this.velocity);
+	}
+
+	public void Injure(float damage) {
+		health -= damage;
+		Debug.Log (health);
+	}
+
+	public bool isDead () {
+		return dead;
 	}
 
 	void Stun(Hero attackingHero)
@@ -644,7 +673,7 @@ public class Hero : MonoBehaviour
 		this.RespawnTimeCalculated = this.RespawnTime;
 		this.NumDeaths = 0;
 		freezeTime = 0;
-		IsFrozen = false;
+		isFrozen = false;
     }
 
 	void Respawn()
