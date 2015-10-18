@@ -5,7 +5,7 @@
 public class BeamProjectile : MonoBehaviour
 {
     [SerializeField]
-    public int SourceID;
+    public Hero Source;
 
     [SerializeField]
     public float Speed;
@@ -82,15 +82,11 @@ public class BeamProjectile : MonoBehaviour
         var beamProjectile = collider2D.GetComponent<BeamProjectile>();
         if (beamProjectile != null)
         {
-            if (SourceID == beamProjectile.SourceID)
-            {
+            if (Source == beamProjectile.Source) return;
 
-            }
-            else
-            {
-                Debug.Log("I CROSSED THE STREAMSSSSS");
-                Destroy(gameObject);
-            }
+            Debug.Log("I CROSSED THE STREAMSSSSS");
+            // Explode here
+            Destroy(gameObject);
         }
         else
         {

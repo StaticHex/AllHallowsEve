@@ -63,7 +63,7 @@ public class BeamWeapon : MonoBehaviour {
         var newProjectile = Instantiate(Projectile).GetComponent<BeamProjectile>();
         newProjectile.Direction = direction;
         newProjectile.transform.position = transform.position;
-        newProjectile.SourceID = GetInstanceID();
+        newProjectile.Source = GetComponent<Hero>();
 
         _fireTimer = 0.0f;
         Heat += 1.0f/FireRate;
