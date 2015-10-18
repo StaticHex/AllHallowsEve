@@ -68,6 +68,11 @@ public class BeamProjectile : MonoBehaviour
         TrailHolder.position = transform.position + new Vector3(Mathf.Cos(angle)*magnitude, Mathf.Sin(angle)*magnitude);
     }
 
+    public void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        Destroy(gameObject);
+    }
+
     public void OnApplicationQuit()
     {
         _isQuitting = true;

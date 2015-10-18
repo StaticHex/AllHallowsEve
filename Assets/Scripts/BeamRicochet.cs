@@ -6,6 +6,8 @@ public class BeamRicochet : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
 
+    private bool _isQuitting;
+
     public void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -21,6 +23,11 @@ public class BeamRicochet : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        DestroyImmediate(gameObject);
+        _isQuitting = true;
+    }
+
+    public void OnDestroy()
+    {
+        if (_isQuitting) return;
     }
 }
